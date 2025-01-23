@@ -1,0 +1,16 @@
+---
+-  name: add new User
+   hosts: node1
+   tasks:
+   -  name: adding a new user
+      ansible.builtin.user:
+      name: bob
+      state: present
+      uid: 3242
+      shell: /sbin/nologin
+
+    - name: delete the existing user
+      ansible.builtin.user:
+      name: alice
+      state: absent
+      remove: yes
