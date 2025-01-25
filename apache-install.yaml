@@ -1,0 +1,34 @@
+---
+- name: new playbook for httpd
+  hosts: serverb
+  tasks: 
+  -  name: Install Httpd & firewalld
+     ansible.built.dnf:
+			 name:
+       -  httpd
+       -  firewalld
+     state: present
+   
+  - name: add new content in httpd
+    ansible.builtin.copy:
+      content: 'Welcome to website serve through ansible'
+      dest: /var/www/html/index.html
+   
+  - name: start firewalld Service
+    ansible.builtin.service:
+      name: firewalld
+      enabled: true
+      state: started
+ 
+  - name: add httpd in firewall
+    ansible.posix.firewalld:
+      server: http
+      permanent: true
+      state: true
+      immediate: yes
+
+  - name: add httpd in firewall
+    ansible.builtin.service:
+      name: http
+      enabled: true
+      state: started
