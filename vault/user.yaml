@@ -1,0 +1,13 @@
+---
+- name: Create user accounts for all services
+  hosts: node1
+  become: true
+  remote_user: bob
+  vars_files:
+  - secrete.yaml
+
+  tasks:
+  -  name: creating user from secret yaml
+     ansible.builtin.user:
+     name: ""{{ username }}""
+     password: ""{{ pwhash | password_hash('sha512') }}""
