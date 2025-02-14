@@ -1,0 +1,14 @@
+---
+-  name: add new User
+   hosts: node1
+   tasks:
+   -  name: Create a cron job
+      ansible.builtin.cron:
+        name: "Backup job"
+        job: "date >> /root/date.txt"
+        minute: "*/2"
+        hour: "*"
+        day: "*"
+        month: "*"
+        weekday: "*"
+        state: present
