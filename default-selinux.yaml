@@ -1,0 +1,11 @@
+---
+-  name: Using the file module to ensure SELinux file content
+   hosts: node2
+   tasks:
+   -  name: SELinux file context is set to defaults
+      ansible.builtin.file:
+        path: "/home/bob/user.txt"
+        seuser: _default
+        serole: _default
+        setype: _default
+        selevel: _default
