@@ -1,0 +1,12 @@
+---
+-  name: add block line
+   hosts: node1
+   remote_user: student
+
+   tasks:
+   -  name: Add block line in file   
+      ansible.builtin.blockinfile:
+        path: /home/bob/users.txt
+        block:
+          This block of text consists of one lines
+        state: present
