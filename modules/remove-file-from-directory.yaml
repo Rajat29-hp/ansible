@@ -1,0 +1,10 @@
+---
+-  name: Use the file module to remove a file
+   hosts: node1
+   remote_user: bob
+
+   tasks:
+   -  name: Remove a file from managed hosts   
+      ansible.builtin.file:
+        path: /home/bob/users.txt
+        state: absent
