@@ -1,0 +1,24 @@
+---
+-  name: add new User and the
+   hosts: node1
+   tasks:
+   -  name: ensure group admins exists whth correct gid
+      ansible.builtin.group:
+      name: admins
+      state: present
+      gid: 4000
+
+ -  name: ensure group developer exists whth correct gid
+      ansible.builtin.group:
+      name: developers
+      state: present
+      gid: 7000
+      uid: 3242
+      shell: /sbin/nologin
+
+ -  name: add the user 'bob' with a bash shell. appending the group admin
+      ansible.builtin.user:
+      name: mike
+      shell: /bom/bash
+      groups: admins, developers
+      append: yes
